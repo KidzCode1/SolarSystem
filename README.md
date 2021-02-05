@@ -1,2 +1,2 @@
 # SolarSystem
-Modelling the solar system in Unity and C#
+Modeling the solar system in Unity and C#
