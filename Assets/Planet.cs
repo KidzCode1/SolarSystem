@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Planet
 {
-	public Planet(string name, double averageDistanceToSun, double diameter, double spinTimeEarthDays, double yearOrbitTimeInEarthDays, double gravityRelativeToEarth, double averageLowTemperature, double averageHighTemperature, string atmosphericContents, int numberOfMoons)
+	public Planet(string name, double averageDistanceToSun, double diameter, double spinTimeEarthDays, double yearOrbitTimeInEarthDays, double gravityRelativeToEarth, double averageLowTemperature, double averageHighTemperature, string atmosphericContents, int numberOfMoons, bool spinsInRetrograde = false)
 	{
 		NumberOfMoons = numberOfMoons;
 		AtmosphericContents = atmosphericContents;
@@ -15,6 +15,7 @@ public class Planet
 		AverageDistanceToSunKm = averageDistanceToSun;
 		Name = name;
 		DiameterKm = diameter;
+		SpinsInRetrograde = spinsInRetrograde;
 	}
 
 	public double DiameterKm { get; }
@@ -52,5 +53,5 @@ public class Planet
 	public string AtmosphericContents { get; set; }
 	public int NumberOfMoons { get; set; }
 	public GameObject GameObject { get; set; }
-	public bool IsInRetrograde { get; set; }
+	public bool SpinsInRetrograde { get; set; }
 }

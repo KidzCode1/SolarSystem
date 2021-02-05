@@ -16,7 +16,7 @@ public class GameLogic : MonoBehaviour
 	public GameObject TextPrototype;
 
 	Planet mercury = new Planet("Mercury", 57900000, 4878, 59, 88, 0.38, -183, 427, "Sodium, Helium", 0);
-	Planet venus = new Planet("Venus", 108160000, 12104, 243, 224, 0.9, 480, 480, "Carbon Dioxide (96%), Nitrogen (3.5%)", 0);
+	Planet venus = new Planet("Venus", 108160000, 12104, 243, 224, 0.9, 480, 480, "Carbon Dioxide (96%), Nitrogen (3.5%)", 0, true);
 	Planet earth = new Planet("Earth", 149600000, 12756, 1, 365.25, 1, 14, 14, "Nitrogen(77%), Oxygen(21%)", 1);
 	Planet mars = new Planet("Mars", 227936640, 6794, GetEarthDays(0, 24, 37), 687, 0.38, -63, -63, "Carbon Dioxide(95.3%), Argon", 2);
 	Planet jupiter = new Planet("Jupiter", 778369000, 142984, GetEarthDays(0, 9, 55), 11.86 * oneEarthYearInDays, 2.64, -130, -130, "Hydrogen, Helium", 79);
@@ -120,7 +120,13 @@ public class GameLogic : MonoBehaviour
 		foreach (Planet planet in allPlanets)
 		{
 			float fractionOfASpin = (float)((acceleratedHoursSinceGameStart % planet.DaySpinTimeHours) / planet.DaySpinTimeHours);
-			float degreesRotation = fractionOfASpin * 360;
+			float degreesRotationRetrograde = fractionOfASpin * 360;
+			float degreesRotationNormal = -degreesRotationRetrograde;
+			float degreesRotation;
+			if (planet.SpinsInRetrograde)
+				degreesRotation = degreesRotationRetrograde;
+			else
+				degreesRotation = degreesRotationNormal;
 			//planet.GameObject.transform.rotation = new Quaternion(0, 1, 0, degreesRotation);
 			planet.GameObject.transform.rotation = Quaternion.AngleAxis(degreesRotation, Vector3.up); 
 			//planet.DaySpinTimeHours
